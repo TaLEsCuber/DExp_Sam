@@ -1,0 +1,372 @@
+%!TEX program = xelatex
+
+% 制作请参考：https://github.com/tuna/THU-Beamer-Theme/blob/master/slide.tex
+% 以及：https://www.zhihu.com/question/29676847
+
+% ---------------------------------------------------------------------
+% 基本设定
+\documentclass[aspectratio=169]{beamer}
+\usepackage{ctex}
+\usepackage[T1]{fontenc}
+
+\input{beamer_YsySettings}
+
+\captionsetup[figure]{name=Figure} % 图片形式
+\captionsetup[table]{name=Table} % 表格形式 
+
+
+
+%---------------------------------------------------------------------
+%	正文
+%---------------------------------------------------------------------
+
+
+
+\begin{document}
+%---------------------------------------------------------------------
+%---------------------------------------------------------------------
+%---------------------------------------------------------------------		
+	
+	
+	% 个人信息
+	\author{戴鹏辉 \& 杨舒云}
+	\title{基于热电效应的热机设计与热力学第二定律验证实验}
+	\subtitle{设计性实验“热力学第二定律”开题报告}
+	\date{May 16, 2024}
+	%---
+	
+	
+	% 封面
+	\frame[plain]{\titlepage}
+	% ---
+	
+	
+	% 总目录
+	\begin{frame}
+		\frametitle{Outline}
+		\tableofcontents
+	\end{frame}
+	% ---
+	
+	
+	% 第一章
+	\section{回顾实验要求}
+	
+	% 章目录
+	\frame{\frametitle{Outline}\tableofcontents[currentsection]}
+	
+	% 内容
+	\begin{frame}
+		\frametitle{回顾实验要求I}
+		
+		\begin{block}{目的}
+			设计并实现输出功率在1瓦以上的“热机”，以探究和验证热力学第二定律。
+		\end{block}
+		
+	\end{frame}	
+	
+	\begin{frame}
+		\frametitle{回顾实验要II}
+		
+		\begin{block}{要求}
+			\begin{enumerate}
+				\item \textbf{学习和理解热电效应}：
+				\begin{itemize}
+					\scriptsize \item 包括Seebeck效应、Peltier效应和Thomson效应。
+					\item \scriptsize 设计实验方案，包含原理和物理模型。
+				\end{itemize}
+				
+				\item \textbf{制作热机}：
+				\begin{itemize}
+					\scriptsize \item \scriptsize 展示热力学第二定律的“热机”。
+					\item \scriptsize 电或机械输出功率不低于1瓦。
+				\end{itemize}
+				
+				\item \textbf{测量与分析}：
+				\begin{itemize}
+					\scriptsize \item \scriptsize 测量装置的最大输出功率和输出效率。
+					\item \scriptsize 讨论实际结果与Carnot循环的差异。
+					\item \scriptsize 探讨进一步提高效率的方法。
+					\item \scriptsize 分析测量精度和不确定度。
+				\end{itemize}
+				
+				\item \textbf{确保安全性}：
+				\begin{itemize}
+					\scriptsize \item \scriptsize 确保装置表面（可触摸到的部分）温度不高于50\degree C。
+				\end{itemize}
+			\end{enumerate}
+		\end{block}
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{回顾实验要求III}
+		
+		\begin{block}{熟悉基本实验装置，搭建与操作}
+			\begin{itemize}
+				\item \textbf{开路输出电压与温差的关系}：
+				\begin{itemize}
+					\item Seebeck效应，器件的等效热电系数 $\alpha$ 和等效热导 $\lambda$（热阻 $\rho$）。
+				\end{itemize}
+				
+				\item \textbf{特定负载下输出功率与温差的关系}：
+				\begin{itemize}
+					\item 验证热力学第二定律。
+				\end{itemize}
+				
+				\item \textbf{热源功率和单片热电堆输出效率的优化}：
+				\begin{itemize}
+					\item 在给定热源功率下，优化室温条件下单片热电堆的输出效率。
+				\end{itemize}
+				
+				\item \textbf{固定冷、热源温度下的测量}：
+				\begin{itemize}
+					\item 测量在不同负载下的热电机输出功率与输出效率的关系。
+					\item 分析器件内阻 $r$。
+				\end{itemize}
+			\end{itemize}
+		\end{block}
+	\end{frame}
+	
+	% ---
+	
+	
+	% 第二章
+	\section{实验原理概述}
+	
+	% 章目录
+	\frame{\frametitle{Outline}\tableofcontents[currentsection]}
+	
+	% 内容
+	\begin{frame}
+		\frametitle{实验原理概述：三种热电效应I}
+		
+		\begin{block}{Seebeck效应}
+			\small 当两种不同的导体或半导体连接成回路，并且两个接头的温度不同，就会在回路中产生\textcolor{c4}{电动势}。
+			
+			\begin{figure}[htbp]
+				\centering
+				\includegraphics[width=0.5\textwidth]{SamPre_1_Gra1.jpg}
+			\end{figure}
+			
+			\begin{myhighlight}
+				$$\mathrm{d}V=\epsilon_{AB}\mathrm{d}T$$
+			\end{myhighlight}
+			\footnotesize 其中，$\epsilon_{AB}$是温差电动势系数（又称\textcolor{c4}{Seebeck系数}，记为$\alpha$）。符号约定为如果在高温段电动势驱使电流由金属A流向金属B为正。			
+		\end{block}
+		
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{实验原理概述：三种热电效应II}
+		
+		\begin{block}{Peltier效应}
+			\small 当电流通过两种不同材料组成的电路时，一个接头会吸热，另一个接头会放热。这个效应对于\textcolor{c4}{调控热机的温度}非常重要，尤其是在确保装置表面温度不超过50\degree C的安全要求下。
+			
+			\begin{figure}[htbp]
+				\centering
+				\includegraphics[width=0.5\textwidth]{SamPre_1_Gra2.jpg}
+			\end{figure}
+			
+			\begin{myhighlight}
+				$$\textbf{J}_{q\pi}=\pi_{AB}\textbf{J}_{e}$$
+			\end{myhighlight}
+			\footnotesize 其中，$\textbf{J}_{q\pi}$是Peltier热流密度，$\textbf{J}_{e}$是从A到B的电流密度，$\pi_{AB}$是两种金属的Peltier系数（与温度有关）。
+		\end{block}
+		
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{实验原理概述：三种热电效应III}
+		
+		\begin{block}{Thomson效应}
+			\scriptsize 在均质导体中，如果存在温度梯度，当电流通过时，会伴随着吸热或放热的现象。这对于完整的热电模型和效率分析很关键。$\dot{Q}=\mu I\cdot \nabla T$，$\mu$为Thomson系数。
+		\end{block}
+		
+		\begin{block}{热电模型参数}
+			\begin{itemize}
+				\scriptsize \item \scriptsize 等效热导表示材料传导热量的能力，单位通常为瓦每米每开尔文（W/m·K）。等效热导越大，材料的热传导能力越强。
+				$
+				\lambda = \frac{Q}{A \cdot \Delta T \cdot t}
+				$。
+				\scriptsize 其中，$\lambda$ 是等效热导（W/m·K），$Q$ 是通过材料的热量（J），$A$ 是材料的横截面积（$m^2$），$\Delta T$ 是材料两端的温差（K），$t$ 是热量传导所需的时间（s）。
+				\scriptsize 通过Fourier热传导定律，也可以表示为（其中 $L$ 是材料的长度（m））：
+				$
+				Q = \lambda \cdot A \cdot \frac{\Delta T}{L} \cdot t
+				$。
+				
+				\item \scriptsize 热阻表示材料对热流阻碍的能力，单位通常为开尔文每瓦（K/W）。热阻越大，材料的热流阻碍能力越强。
+				$
+				R_{\text{th}} = \frac{\Delta T}{Q}
+				$。
+				\scriptsize 其中，$R_{\text{th}}$ 是热阻（K/W），$\Delta T$ 是材料两端的温差（K），$Q$ 是通过材料的热量（W）。
+				
+				\item \scriptsize 等效热导和热阻是互为倒数的关系：
+				$
+				R_{\text{th}} = \frac{L}{\lambda \cdot A}
+				$，
+				$
+				\lambda = \frac{L}{R_{\text{th}} \cdot A}
+				$。
+			\end{itemize}
+		\end{block}
+		
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{实验原理概述：输出电路部分}
+		
+		\begin{block}{Seebeck效应电源的外输出特性}
+			\begin{itemize}
+				\item 开路电压是指没有外部负载连接时，热电发电装置两端的电压。根据Seebeck效应，开路电压与温差成正比，$V_{\text{oc}} = \alpha \Delta T$。
+				
+				\item 当热电发电装置连接到负载时，输出电压会由于内阻的存在而下降。负载电压$V_{\text{L}} = \frac{\alpha \Delta T \cdot R_{\text{L}}}{R_{\text{L}} + R_{\text{in}}}$，而输出功率是负载上消耗的功率$P_{\text{out}} = \frac{(\alpha \Delta T)^2 \cdot R_{\text{L}}}{(R_{\text{L}} + R_{\text{in}})^2}$。
+				
+				\item \textcolor{c4}{当负载电阻等于内阻时}，热电发电装置输出的功率达到最大$P_{\text{max}} = \frac{(\alpha \Delta T)^2}{4 R_{\text{in}}}$。				
+			\end{itemize}						
+		\end{block}
+		
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{实验原理概述：电加热器（电热贴）}
+		
+		\begin{block}{电加热器（电热贴）的工作原理}
+			电加热器（电热贴）通过电能转化为热能来实现加热，其工作原理基于焦耳定律$Q = I^2 R t$。
+		\end{block}
+		
+		\begin{block}{加热功率的测量}
+			使用电压表并联连接在电加热器两端，读取电压值；使用电流表串联连接在电路中，读取电流值；根据测得的电压和电流，使用公式$P = VI$计算加热功率。
+			
+			或者采用使用欧姆表测量电加热器的电阻，使用测得的电阻和电流计算$P = I^2 R$。
+			
+			对于电流电压随时间变化的情况，计算一段时间的总热功可以利用\textcolor{c4}{积分}来实现。
+		\end{block}
+		
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{实验原理概述：PID控温I}
+		\begin{block}{控温算法}
+			
+			\begin{table}[h]
+				\centering
+				%\label{tab:tab1}
+				%\caption{高级控温算法的比较}
+				\resizebox{\textwidth}{!}{%
+				\begin{tabular}{|c|c|c|}
+					\hline
+					控温算法 & 优点 & 缺点 \\
+					\hline
+					\textcolor{c4}{PID 控制} & 简单、易实现 & 性能有限，难以处理复杂系统 \\
+					\hline
+					模糊控制 & 不需要精确模型，适应性强 & 规则设计复杂，性能依赖于规则质量 \\
+					\hline
+					模型预测控制 & 最优性能，多变量处理 & 计算量大，依赖系统模型 \\
+					\hline
+					自适应控制 & 参数自调整，适应性强 & 实现复杂，收敛性问题 \\
+					\hline
+					神经网络控制 & 非线性处理能力强 & 训练复杂，数据需求大 \\
+					\hline
+					最优控制 & 理论性能优 & 实现复杂，计算量大 \\
+					\hline
+				\end{tabular}
+			}				
+			\end{table}
+			
+		\end{block}
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{实验原理概述：PID控温II}
+		
+		\begin{block}{先考虑采用最经典的PID控温}
+			\begin{itemize}
+				\small\item PID（Proportional-Integral-Derivative）控制是一种用于温度控制的经典算法，通过对误差的比例、积分和微分进行计算和调整，精确控制加热器的输出，从而实现温度的稳定控制。PID 控制器通常由三个部分组成：比例（P），积分（I），和微分（D）。
+				
+				\small\item PID 控温的控制量 $u(t)$ 可以表示为：$$u(t) = K_p e(t) + K_i \int_0^t e(\tau) d\tau + K_d \frac{d e(t)}{dt}$$
+				
+				\item \small 比例控制$P_{\text{out}} = K_p e(t)$直接与当前误差成比例，调整系统响应速度；积分控制$I_{\text{out}} = K_i \int_0^t e(\tau) d\tau$对误差进行积分，消除稳态误差，增强系统的长期精度；微分控制$D_{\text{out}} = K_d \frac{d e(t)}{dt}$对误差进行微分，预测误差变化趋势，减小超调和振荡。
+			\end{itemize}			
+		\end{block}
+		
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{实验原理概述：PID控温III}
+		
+		\begin{block}{离散形式的 PID 控制算法}
+			在实际应用中，PID 控制通常以\textcolor{c4}{离散形式}实现。离散 PID 控制算法如下：			
+			\begin{myhighlight}
+				\small\[
+				u[k] = u[k-1] + K_p (e[k] - e[k-1]) + K_i e[k] + K_d \left( \frac{e[k] - e[k-1]}{T} \right)
+				\]
+			\end{myhighlight}
+			其中：
+			\begin{itemize}
+				\item $u[k]$ 是第 $k$ 次采样时的控制输出；
+				\item $e[k]$ 是第 $k$ 次采样时的误差；
+				\item $T$ 是采样周期。
+			\end{itemize}
+		\end{block}
+		
+	\end{frame}
+	
+	% ---
+	
+	
+	% 第二章
+	\section{实验方案}
+	
+	% 章目录
+	\frame{\frametitle{Outline}\tableofcontents[currentsection]}
+	
+	% 内容
+	\begin{frame}
+		\frametitle{实验方案：总体规划}
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{实验方案：搭建热机}
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{实验方案：温度控制}
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{实验方案：测量热机效率}
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{实验方案：优化}
+	\end{frame}
+	
+	% ---
+	
+	
+	% 致谢
+	\begin{frame}
+		
+		\begin{center}
+			{\Huge\calligra Thanks!}
+		\end{center}
+		
+		\begin{figure}[htbp]
+			\centering
+			\includegraphics[width=0.7\textwidth]{name.png}
+			%\caption{个人签名}
+			%\label{fig:name}
+		\end{figure}
+		
+	\end{frame}
+	
+	
+	
+	
+	
+	
+	
+%---------------------------------------------------------------------	
+%---------------------------------------------------------------------
+%---------------------------------------------------------------------
+\end{document}
