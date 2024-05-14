@@ -14,7 +14,7 @@
 \definecolor{c4}{HTML}{E26E1B} % #e26e1b（深橘红）
 \definecolor{c5}{HTML}{E6E4E0} % #e6e4e0（银白）
 \definecolor{c6}{HTML}{4DF8E8} % #4df8e8（蓝绿）
-
+\definecolor{c7}{HTML}{C2D5CD} % #c2d5cd（茉绿）
 
 
 % ---------------------------------------------------------------------
@@ -34,6 +34,10 @@
 % 用这一个：\documentclass[aspectratio=169]{beamer}
 % 加导航条
 \useoutertheme[width=3\baselineskip,right]{sidebar}
+%\useoutertheme[width=3\baselineskip,left]{sidebar}
+\setbeamercolor{section in sidebar}{fg=c2, bg=c3}
+%\setbeamercolor{section in sidebar}{fg=c2, bg=c6}
+%\setbeamerfont{section in sidebar}{series=\bfseries}
 % 目录标数字
 \setbeamertemplate{section in toc}[sections numbered] 
 %\setbeamertemplate{subsection in toc}[subsections numbered]
@@ -50,11 +54,11 @@
 	\leavevmode%
 	\hbox{%
 		\begin{beamercolorbox}[wd=.4\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
-			\usebeamerfont{author in head/foot}\insertshortauthor
+			\usebeamerfont{author in head/foot}\insertauthor
 		\end{beamercolorbox}
 		
 		\begin{beamercolorbox}[wd=.6\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
-			\usebeamerfont{title in head/foot}\insertshorttitle\hspace*{13em}
+			\usebeamerfont{title in head/foot}\inserttitle\hspace*{13em}
 			\insertframenumber{} / \inserttotalframenumber\hspace*{0ex}
 	\end{beamercolorbox}}
 	
@@ -68,12 +72,17 @@
 \setbeamercolor{author in head/foot}{fg=c5, bg=c1}
 \setbeamercolor{title in head/foot}{fg=c5, bg=c1}
 % 设置sidebar颜色
+%\setbeamercolor{sidebar right}{bg=c7}
+\setbeamercolor{sidebar right}{bg=c5}
+%\setbeamercolor{sidebar left}{bg=c7}
 \setbeamercolor{structure}{fg=c2, bg=c3} 
 \setbeamercolor{item}{fg=c6}
 % 左右页间距的排版
 \def\swidth{2.3cm}
-\setbeamersize{sidebar width right=\swidth}
-\setbeamersize{sidebar width left=\swidth}
+%\setbeamersize{sidebar width right=\swidth}
+%\setbeamersize{sidebar width left=\swidth}
+\setbeamersize{sidebar width right=1.8cm}
+\setbeamersize{sidebar width left=1.8cm}
 \setbeamerfont{title in sidebar}{size=\scriptsize}
 \setbeamerfont{section in sidebar}{size=\tiny}
 
