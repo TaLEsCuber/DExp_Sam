@@ -388,9 +388,26 @@
 		\end{block}
 		
 	\end{frame}
+	
+	\begin{frame}	
+		\frametitle{实验方案：搭建热机II}
+		
+		\begin{block}{材料与组件}
+			\begin{figure}[htbp]
+				\centering
+				\subfloat[]{
+					\includegraphics[width=0.4\textwidth]{SamPre_1_Gra5.jpg}
+				}
+				\subfloat[]{
+					\includegraphics[width=0.4\textwidth]{SamPre_1_Gra6.jpg}
+				}	
+			\end{figure}
+		\end{block}
+		
+	\end{frame}
 		
 	\begin{frame}	
-		\frametitle{实验方案：搭建热机II}	
+		\frametitle{实验方案：搭建热机III}	
 		
 		\begin{block}{搭建方案}
 			\begin{enumerate}
@@ -417,7 +434,7 @@
 	\end{frame}
 	
 	\begin{frame}	
-		\frametitle{实验方案：搭建热机III}	
+		\frametitle{实验方案：搭建热机IV}	
 		
 		\begin{block}{搭建方案}
 			\begin{enumerate}
@@ -528,6 +545,12 @@
 			\item 散热系统优化：\textcolor{c4}{优化冷端的散热设计}，可以是通过增加散热片面积、改进风扇布局或采用液冷系统，以提高热电堆的冷却效率。
 			
 			\item 整体系统设计：\textcolor{c4}{在系统级别上考虑热电堆的集成}，包括电源管理、热管理和控制策略的优化，可以进一步提升效率。
+			
+			\item 测量（估算）热对空气的耗散
+			\begin{enumerate}
+				\item 热对流：使用牛顿冷却定律（$\dot{Q}=hA(T_{surface}-T_{air})$），A为面积。
+				\item 热辐射：使用斯特藩-玻尔兹曼定律（$\dot{Q}=\epsilon\sigma A(T^4_{surface}-T^4_{air})$），A为面积。				
+			\end{enumerate}
 		\end{itemize}
 		
 	\end{frame}
